@@ -1,4 +1,4 @@
-name: one-time-ci-diagnostics
+name: one-time-api-diagnostics
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
   diagnose:
     if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -20,41 +20,64 @@ jobs:
         with:
           python-version: '3.12'
           cache: pip
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '22'
-      - name: Capture validation output
+      - name: Install
+        run: |
+          python -m pip install --upgrade pip
+          pip install '.[test]'
+      - name: Capture FastAPI validation details
         shell: bash
         run: |
-          set +e
-          {
-            echo '== pip upgrade =='
-            python -m pip install --upgrade pip
-            echo "status=$?"
-            echo '== install =='
-            pip install '.[test]'
-            echo "status=$?"
-            echo '== ruff check =='
-            ruff check .
-            echo "status=$?"
-            echo '== ruff format =='
-            ruff format --check .
-            echo "status=$?"
-            echo '== unit tests =='
-            python -m unittest discover -s tests -v
-            echo "status=$?"
-            echo '== browser syntax =='
-            node --check static/app.js
-            echo "status=$?"
-            echo '== repository policy =='
-            python scripts/validate_repo.py
-            echo "status=$?"
-            echo '== container build =='
-            docker build --tag cutline:diagnostic .
-            echo "status=$?"
-          } > ci-diagnostics.txt 2>&1
+          python - <<'PY' > api-diagnostics.txt 2>&1
+          from fastapi.exceptions import RequestValidationError
+          from fastapi.responses import JSONResponse
+          from fastapi.testclient import TestClient
+
+          from cutline.api import create_app
+          from cutline.config import Settings
+          from cutline.providers import FixtureResearchService
+          from cutline.store import MemoryProjectStore
+
+          settings = Settings(
+              mode="fixture",
+              data_backend="memory",
+              google_cloud_project="",
+              google_cloud_location="global",
+              model_id="gemini-3.5-flash",
+              parallel_api_key="",
+              session_secret="diagnostic-value-longer-than-32-characters",
+              cookie_secure=False,
+              allowed_hosts=("testserver",),
+              project_ttl_hours=72,
+              provider_timeout_seconds=30,
+              max_body_bytes=32_768,
+              max_projects_per_session=5,
+          )
+          app = create_app(settings, MemoryProjectStore(), FixtureResearchService())
+
+          async def reveal_validation_error(request, exc: RequestValidationError):
+              del request
+              return JSONResponse({"errors": exc.errors()}, status_code=422)
+
+          app.exception_handlers[RequestValidationError] = reveal_validation_error
+          client = TestClient(app)
+          capabilities = client.get("/api/capabilities")
+          print("capabilities", capabilities.status_code, capabilities.json())
+          response = client.post(
+              "/api/projects",
+              json={},
+              headers={"X-CSRF-Token": capabilities.json()["csrf"]},
+          )
+          print("create", response.status_code, response.json())
+          for route in app.routes:
+              if getattr(route, "path", None) == "/api/projects":
+                  dependant = route.dependant
+                  print("body", [field.name for field in dependant.body_params])
+                  print("query", [field.name for field in dependant.query_params])
+                  print("headers", [field.name for field in dependant.header_params])
+                  print("dependencies", [dependency.name for dependency in dependant.dependencies])
+          PY
           git config user.name 'Anupam Roy'
           git config user.email 'anupam020202@gmail.com'
-          git add ci-diagnostics.txt
-          git commit -m 'Capture CI diagnostics'
+          git add api-diagnostics.txt
+          git commit -m 'Capture FastAPI validation diagnostics'
           git push origin "HEAD:${{ github.ref_name }}"
