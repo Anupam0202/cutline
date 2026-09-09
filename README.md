@@ -198,12 +198,6 @@ gh repo create cutline --public --source=. --remote=origin --push
 gh repo edit --description "Version-bound documentary fact review with Gemini and Parallel Search" --add-topic google-cloud --add-topic gemini --add-topic parallel --add-topic media-tech
 ```
 
-If `cutline` is unavailable, use `cutline-cinema` consistently in the repository URL and Devpost form. Add the MIT license in the GitHub About panel, enable secret scanning and Dependabot alerts, then protect `main` with the CI workflow as a required check.
-
-## Submission
-
-Use [Submission guide](docs/SUBMISSION.md) for the three-minute demo outline, Devpost copy, runtime evidence checklist, and final link verification.
-
 ## License
 
 Original CUTLINE code is available under the [MIT License](LICENSE). Dependency notices are in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
