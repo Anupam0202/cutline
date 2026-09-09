@@ -1,0 +1,685 @@
+== pip upgrade ==
+Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
+status=0
+== install ==
+Processing ./.
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Collecting fastapi==0.141.1 (from cutline-cinema==1.0.0)
+  Downloading fastapi-0.141.1-py3-none-any.whl.metadata (27 kB)
+Collecting uvicorn==0.52.4 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+  Downloading uvicorn-0.52.4-py3-none-any.whl.metadata (6.6 kB)
+Collecting pydantic==2.13.5 (from cutline-cinema==1.0.0)
+  Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+Collecting google-adk==2.8.0 (from cutline-cinema==1.0.0)
+  Downloading google_adk-2.8.0-py3-none-any.whl.metadata (25 kB)
+Collecting google-genai==2.22.0 (from cutline-cinema==1.0.0)
+  Downloading google_genai-2.22.0-py3-none-any.whl.metadata (56 kB)
+Collecting google-cloud-firestore==2.29.0 (from cutline-cinema==1.0.0)
+  Downloading google_cloud_firestore-2.29.0-py3-none-any.whl.metadata (9.5 kB)
+Collecting parallel-web==1.3.3 (from cutline-cinema==1.0.0)
+  Downloading parallel_web-1.3.3-py3-none-any.whl.metadata (14 kB)
+Collecting httpx==0.28.1 (from cutline-cinema==1.0.0)
+  Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+Collecting ruff==0.16.5 (from cutline-cinema==1.0.0)
+  Downloading ruff-0.16.5-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (26 kB)
+Collecting starlette>=0.46.0 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+  Downloading starlette-1.6.0-py3-none-any.whl.metadata (6.4 kB)
+Collecting typing-extensions>=4.8.0 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting typing-inspection>=0.4.2 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+  Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+Collecting annotated-doc>=0.0.2 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+  Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+Collecting aiohttp!=3.14.2 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading aiohttp-3.14.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+Collecting aiosqlite>=0.21 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading aiosqlite-0.22.1-py3-none-any.whl.metadata (4.3 kB)
+Collecting authlib<2,>=1.6.6 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading authlib-1.8.0-py2.py3-none-any.whl.metadata (10 kB)
+Collecting click<9,>=8.1.8 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+Collecting google-auth>=2.47 (from google-auth[pyopenssl]>=2.47->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading google_auth-2.57.1-py3-none-any.whl.metadata (6.0 kB)
+Collecting graphviz<1,>=0.20.2 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading graphviz-0.21-py3-none-any.whl.metadata (12 kB)
+Collecting jsonschema<5,>=4.23 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+Collecting opentelemetry-api<=1.42.1,>=1.39 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading opentelemetry_api-1.42.1-py3-none-any.whl.metadata (1.4 kB)
+Collecting opentelemetry-sdk<=1.42.1,>=1.39 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading opentelemetry_sdk-1.42.1-py3-none-any.whl.metadata (1.7 kB)
+Collecting packaging>=21 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting python-dotenv<2,>=1 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading python_dotenv-1.2.3-py3-none-any.whl.metadata (29 kB)
+Collecting python-multipart<1,>=0.0.9 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+Collecting pyyaml<7,>=6.0.2 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting requests<3,>=2.32.4 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+Collecting tenacity<10,>=9 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading tenacity-9.1.4-py3-none-any.whl.metadata (1.2 kB)
+Collecting tzlocal<6,>=5.3 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading tzlocal-5.4.4-py3-none-any.whl.metadata (7.7 kB)
+Collecting watchdog<7,>=6 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl.metadata (44 kB)
+Collecting websockets<16,>=15.0.1 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading websockets-15.0.1-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting anyio<5.0.0,>=4.8.0 (from google-genai==2.22.0->cutline-cinema==1.0.0)
+  Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+Collecting distro<2,>=1.7.0 (from google-genai==2.22.0->cutline-cinema==1.0.0)
+  Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+Collecting sniffio (from google-genai==2.22.0->cutline-cinema==1.0.0)
+  Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+Collecting certifi (from httpx==0.28.1->cutline-cinema==1.0.0)
+  Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+Collecting httpcore==1.* (from httpx==0.28.1->cutline-cinema==1.0.0)
+  Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+Collecting idna (from httpx==0.28.1->cutline-cinema==1.0.0)
+  Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+Collecting annotated-types>=0.6.0 (from pydantic==2.13.5->cutline-cinema==1.0.0)
+  Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.46.5 (from pydantic==2.13.5->cutline-cinema==1.0.0)
+  Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+Collecting h11>=0.8 (from uvicorn==0.52.4->uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+  Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+Collecting google-api-core<3.0.0,>=2.25.0 (from google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading google_api_core-2.36.0-py3-none-any.whl.metadata (3.2 kB)
+Collecting google-cloud-core<3.0.0,>=2.0.0 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading google_cloud_core-2.7.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting grpcio<2.0.0,>=1.59.0 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading grpcio-1.83.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.7 kB)
+Collecting proto-plus<2.0.0,>=1.26.1 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading proto_plus-1.28.4-py3-none-any.whl.metadata (2.2 kB)
+Collecting protobuf<8.0.0,>=6.33.5 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading protobuf-7.36.1-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+Collecting httptools>=0.8.0 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+  Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+Collecting uvloop>=0.15.1 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+  Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (4.9 kB)
+Collecting watchfiles>=0.20 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+  Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+Collecting cryptography>=45.0.1 (from authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+Collecting joserfc>=1.6.1 (from authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading joserfc-1.7.5-py3-none-any.whl.metadata (3.1 kB)
+Collecting googleapis-common-protos<2.0.0,>=1.69.2 (from google-api-core<3.0.0,>=2.25.0->google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading googleapis_common_protos-1.75.3-py3-none-any.whl.metadata (8.5 kB)
+INFO: pip is looking at multiple versions of google-api-core to determine which version is compatible with other requirements. This could take a while.
+Collecting google-api-core<3.0.0,>=2.25.0 (from google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading google_api_core-2.34.0-py3-none-any.whl.metadata (2.9 kB)
+INFO: pip is looking at multiple versions of google-api-core[grpc] to determine which version is compatible with other requirements. This could take a while.
+Collecting grpcio-status<2.0.0,>=1.59.0 (from google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+  Downloading grpcio_status-1.83.1-py3-none-any.whl.metadata (1.2 kB)
+Collecting pyasn1-modules>=0.2.1 (from google-auth>=2.47->google-auth[pyopenssl]>=2.47->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+Collecting attrs>=22.2.0 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+Collecting referencing>=0.28.4 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+Collecting rpds-py>=0.25.0 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+Collecting opentelemetry-semantic-conventions==0.63b1 (from opentelemetry-sdk<=1.42.1,>=1.39->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading opentelemetry_semantic_conventions-0.63b1-py3-none-any.whl.metadata (2.4 kB)
+Collecting charset_normalizer<4,>=2 (from requests<3,>=2.32.4->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading charset_normalizer-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+Collecting urllib3<3,>=1.26 (from requests<3,>=2.32.4->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl.metadata (5.9 kB)
+Collecting aiosignal>=1.4.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+Collecting frozenlist>=1.1.1 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (20 kB)
+Collecting multidict<7.0,>=4.5 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+Collecting propcache>=0.2.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading propcache-0.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (16 kB)
+Collecting yarl<2.0,>=1.17.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading yarl-1.24.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (103 kB)
+Collecting cffi>=2.0.0 (from cryptography>=45.0.1->authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+Collecting pycparser (from cffi>=2.0.0->cryptography>=45.0.1->authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth>=2.47->google-auth[pyopenssl]>=2.47->google-adk==2.8.0->cutline-cinema==1.0.0)
+  Downloading pyasn1-0.6.4-py3-none-any.whl.metadata (8.4 kB)
+Downloading fastapi-0.141.1-py3-none-any.whl (131 kB)
+Downloading google_adk-2.8.0-py3-none-any.whl (4.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 61.4 MB/s  0:00:00
+Downloading google_genai-2.22.0-py3-none-any.whl (1.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 53.5 MB/s  0:00:00
+Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+Downloading uvicorn-0.52.4-py3-none-any.whl (79 kB)
+Downloading google_cloud_firestore-2.29.0-py3-none-any.whl (432 kB)
+Downloading parallel_web-1.3.3-py3-none-any.whl (176 kB)
+Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 36.5 MB/s  0:00:00
+Downloading ruff-0.16.5-py3-none-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (10.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.3/10.3 MB 110.2 MB/s  0:00:00
+Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+Downloading authlib-1.8.0-py2.py3-none-any.whl (260 kB)
+Downloading click-8.5.0-py3-none-any.whl (125 kB)
+Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+Downloading google_api_core-2.34.0-py3-none-any.whl (180 kB)
+Downloading google_auth-2.57.1-py3-none-any.whl (259 kB)
+Downloading google_cloud_core-2.7.0-py3-none-any.whl (31 kB)
+Downloading googleapis_common_protos-1.75.3-py3-none-any.whl (306 kB)
+Downloading graphviz-0.21-py3-none-any.whl (47 kB)
+Downloading grpcio-1.83.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 131.8 MB/s  0:00:00
+Downloading grpcio_status-1.83.1-py3-none-any.whl (14 kB)
+Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+Downloading opentelemetry_api-1.42.1-py3-none-any.whl (61 kB)
+Downloading opentelemetry_sdk-1.42.1-py3-none-any.whl (170 kB)
+Downloading opentelemetry_semantic_conventions-0.63b1-py3-none-any.whl (203 kB)
+Downloading proto_plus-1.28.4-py3-none-any.whl (50 kB)
+Downloading protobuf-7.36.1-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+Downloading python_dotenv-1.2.3-py3-none-any.whl (22 kB)
+Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 74.1 MB/s  0:00:00
+Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+Downloading charset_normalizer-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (248 kB)
+Downloading idna-3.19-py3-none-any.whl (68 kB)
+Downloading starlette-1.6.0-py3-none-any.whl (75 kB)
+Downloading tenacity-9.1.4-py3-none-any.whl (28 kB)
+Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Downloading tzlocal-5.4.4-py3-none-any.whl (18 kB)
+Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl (79 kB)
+Downloading websockets-15.0.1-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (182 kB)
+Downloading aiohttp-3.14.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 104.9 MB/s  0:00:00
+Downloading multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (256 kB)
+Downloading yarl-1.24.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (109 kB)
+Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+Downloading aiosqlite-0.22.1-py3-none-any.whl (17 kB)
+Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+Downloading cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 72.7 MB/s  0:00:00
+Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+Downloading joserfc-1.7.5-py3-none-any.whl (71 kB)
+Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading propcache-0.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (61 kB)
+Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
+Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (366 kB)
+Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 111.6 MB/s  0:00:00
+Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+Building wheels for collected packages: cutline-cinema
+  Building wheel for cutline-cinema (pyproject.toml): started
+  Building wheel for cutline-cinema (pyproject.toml): finished with status 'done'
+  Created wheel for cutline-cinema: filename=cutline_cinema-1.0.0-py3-none-any.whl size=26515 sha256=307d0c2b4bc6af8783c4c5f38a715b5ed33a501324cb83182cc4452070025d95
+  Stored in directory: /tmp/pip-ephem-wheel-cache-etc6oas5/wheels/09/82/d1/e397985a00ff44b280cd458ce64dedf2be229af68e4bfcbb65
+Successfully built cutline-cinema
+Installing collected packages: websockets, watchdog, uvloop, urllib3, tzlocal, typing-extensions, tenacity, sniffio, ruff, rpds-py, pyyaml, python-multipart, python-dotenv, pycparser, pyasn1, protobuf, propcache, packaging, multidict, idna, httptools, h11, graphviz, frozenlist, distro, click, charset_normalizer, certifi, attrs, annotated-types, annotated-doc, aiosqlite, aiohappyeyeballs, yarl, uvicorn, typing-inspection, requests, referencing, pydantic-core, pyasn1-modules, proto-plus, opentelemetry-api, httpcore, grpcio, googleapis-common-protos, cffi, anyio, aiosignal, watchfiles, starlette, pydantic, opentelemetry-semantic-conventions, jsonschema-specifications, httpx, grpcio-status, cryptography, aiohttp, parallel-web, opentelemetry-sdk, jsonschema, joserfc, google-auth, fastapi, google-api-core, authlib, google-genai, google-cloud-core, google-cloud-firestore, google-adk, cutline-cinema
+
+Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 aiosqlite-0.22.1 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 authlib-1.8.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 click-8.5.0 cryptography-50.0.1 cutline-cinema-1.0.0 distro-1.9.0 fastapi-0.141.1 frozenlist-1.8.0 google-adk-2.8.0 google-api-core-2.34.0 google-auth-2.57.1 google-cloud-core-2.7.0 google-cloud-firestore-2.29.0 google-genai-2.22.0 googleapis-common-protos-1.75.3 graphviz-0.21 grpcio-1.83.1 grpcio-status-1.83.1 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 idna-3.19 joserfc-1.7.5 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 multidict-6.7.1 opentelemetry-api-1.42.1 opentelemetry-sdk-1.42.1 opentelemetry-semantic-conventions-0.63b1 packaging-26.3 parallel-web-1.3.3 propcache-0.5.2 proto-plus-1.28.4 protobuf-7.36.1 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.0 pydantic-2.13.5 pydantic-core-2.46.5 python-dotenv-1.2.3 python-multipart-0.0.32 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 rpds-py-2026.6.3 ruff-0.16.5 sniffio-1.3.1 starlette-1.6.0 tenacity-9.1.4 typing-extensions-4.16.0 typing-inspection-0.4.4 tzlocal-5.4.4 urllib3-2.7.0 uvicorn-0.52.4 uvloop-0.22.1 watchdog-6.0.0 watchfiles-1.2.0 websockets-15.0.1 yarl-1.24.5
+status=0
+== ruff check ==
+E501 Line too long (126 > 110)
+   --> cutline/domain.py:432:111
+    |
+430 |         "mode": project["mode"],
+431 |         "revision": project["revision"],
+432 |         "review_scope": "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order.",
+    |                                                                                                               ^^^^^^^^^^^^^^^^
+433 |         "disclaimer": "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit.",
+434 |         "cues": cues,
+    |
+
+E501 Line too long (118 > 110)
+   --> cutline/domain.py:433:111
+    |
+431 |         "revision": project["revision"],
+432 |         "review_scope": "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order.",
+433 |         "disclaimer": "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit.",
+    |                                                                                                               ^^^^^^^^
+434 |         "cues": cues,
+435 |         "claims": claims,
+    |
+
+S106 Possible hardcoded password assigned to argument: "session_secret"
+  --> tests/test_api.py:21:9
+   |
+19 |         model_id="gemini-3.5-flash",
+20 |         parallel_api_key="",
+21 |         session_secret="test-secret-which-is-longer-than-32-characters",
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+22 |         cookie_secure=False,
+23 |         allowed_hosts=("testserver",),
+   |
+
+Found 3 errors.
+status=1
+== ruff format ==
+27 files already formatted
+status=0
+== unit tests ==
+/opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages/fastapi/testclient.py:1: StarletteDeprecationWarning: Using `httpx` with `starlette.testclient` is deprecated; install `httpx2` instead.
+  from starlette.testclient import TestClient as TestClient  # noqa
+test_complete_fixture_workflow (test_api.ApiTests.test_complete_fixture_workflow) ... FAIL
+test_csrf_and_owner_session (test_api.ApiTests.test_csrf_and_owner_session) ... FAIL
+test_delete (test_api.ApiTests.test_delete) ... FAIL
+test_security_headers_and_health (test_api.ApiTests.test_security_headers_and_health) ... FAIL
+test_stale_research_result_cannot_commit (test_api.ApiTests.test_stale_research_result_cannot_commit) ... FAIL
+test_fixture_defaults_are_safe (test_config.ConfigurationTests.test_fixture_defaults_are_safe) ... ok
+test_live_mode_requires_all_controls (test_config.ConfigurationTests.test_live_mode_requires_all_controls) ... ok
+test_baseline_is_current (test_domain.DomainTests.test_baseline_is_current) ... ok
+test_csv_formula_neutralization (test_domain.DomainTests.test_csv_formula_neutralization) ... ok
+test_edit_invalidates_only_dependent_recipes (test_domain.DomainTests.test_edit_invalidates_only_dependent_recipes) ... ok
+test_export_stays_blocked_while_stale (test_domain.DomainTests.test_export_stays_blocked_while_stale) ... ok
+test_quotation_is_immutable (test_domain.DomainTests.test_quotation_is_immutable) ... ok
+test_research_repair_review_and_signoff (test_domain.DomainTests.test_research_repair_review_and_signoff) ... ok
+test_fixture_receipt_is_explicit (test_providers.ProviderBoundaryTests.test_fixture_receipt_is_explicit) ... ok
+test_search_normalization_rejects_unsafe_url (test_providers.ProviderBoundaryTests.test_search_normalization_rejects_unsafe_url) ... ok
+test_unverifiable_citation_is_downgraded (test_providers.ProviderBoundaryTests.test_unverifiable_citation_is_downgraded) ... ok
+test_round_trip_and_csrf (test_security.SessionTests.test_round_trip_and_csrf) ... ok
+test_tampered_token_is_rejected (test_security.SessionTests.test_tampered_token_is_rejected) ... ok
+test_delete_removes_project (test_store.MemoryStoreTests.test_delete_removes_project) ... ok
+test_owner_isolation (test_store.MemoryStoreTests.test_owner_isolation) ... ok
+test_same_revision_allows_exactly_one_writer (test_store.MemoryStoreTests.test_same_revision_allows_exactly_one_writer) ... ok
+
+======================================================================
+FAIL: test_complete_fixture_workflow (test_api.ApiTests.test_complete_fixture_workflow)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/cutline/cutline/tests/test_api.py", line 40, in setUp
+    self.assertEqual(created.status_code, 201)
+AssertionError: 422 != 201
+
+======================================================================
+FAIL: test_csrf_and_owner_session (test_api.ApiTests.test_csrf_and_owner_session)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/cutline/cutline/tests/test_api.py", line 40, in setUp
+    self.assertEqual(created.status_code, 201)
+AssertionError: 422 != 201
+
+======================================================================
+FAIL: test_delete (test_api.ApiTests.test_delete)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/cutline/cutline/tests/test_api.py", line 40, in setUp
+    self.assertEqual(created.status_code, 201)
+AssertionError: 422 != 201
+
+======================================================================
+FAIL: test_security_headers_and_health (test_api.ApiTests.test_security_headers_and_health)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/cutline/cutline/tests/test_api.py", line 40, in setUp
+    self.assertEqual(created.status_code, 201)
+AssertionError: 422 != 201
+
+======================================================================
+FAIL: test_stale_research_result_cannot_commit (test_api.ApiTests.test_stale_research_result_cannot_commit)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/cutline/cutline/tests/test_api.py", line 40, in setUp
+    self.assertEqual(created.status_code, 201)
+AssertionError: 422 != 201
+
+----------------------------------------------------------------------
+Ran 21 tests in 0.173s
+
+FAILED (failures=5)
+status=1
+== browser syntax ==
+status=0
+== repository policy ==
+Repository validation passed (168 files inspected).
+status=0
+== container build ==
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 934B done
+#1 DONE 0.0s
+
+#2 [auth] library/python:pull token for registry-1.docker.io
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12.11-slim
+#3 DONE 0.5s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 118B done
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 193.68kB done
+#5 DONE 0.0s
+
+#6 [builder 1/6] FROM docker.io/library/python:3.12.11-slim@sha256:47ae396f09c1303b8653019811a8498470603d7ffefc29cb07c88f1f8cb3d19f
+#6 resolve docker.io/library/python:3.12.11-slim@sha256:47ae396f09c1303b8653019811a8498470603d7ffefc29cb07c88f1f8cb3d19f done
+#6 sha256:9f1eefd374c99041f1f7e974848791522e9957a9686def3209731bce1622083c 5.58kB / 5.58kB done
+#6 sha256:8c7716127147648c1751940b9709b6325f2256290d3201662eca2701cadb2cdf 0B / 29.78MB 0.1s
+#6 sha256:3c43e65991bd080f60cac1c513796828316f1f90951eaad19edb90cc21292184 0B / 1.29MB 0.1s
+#6 sha256:c8cc3e95286cdfcdfe1215ca0626fb6d9043077962c7d4e5bcbab8b96231f919 12.11MB / 12.11MB 0.1s
+#6 sha256:47ae396f09c1303b8653019811a8498470603d7ffefc29cb07c88f1f8cb3d19f 10.37kB / 10.37kB done
+#6 sha256:0b29ab9e420820f53d1cd5ce0157dfe07bea8a7cff5b4754d6d95c07b0e5bc47 1.75kB / 1.75kB done
+#6 sha256:8c7716127147648c1751940b9709b6325f2256290d3201662eca2701cadb2cdf 29.78MB / 29.78MB 0.2s
+#6 sha256:3c43e65991bd080f60cac1c513796828316f1f90951eaad19edb90cc21292184 1.29MB / 1.29MB 0.2s
+#6 sha256:8c7716127147648c1751940b9709b6325f2256290d3201662eca2701cadb2cdf 29.78MB / 29.78MB 0.3s done
+#6 sha256:3c43e65991bd080f60cac1c513796828316f1f90951eaad19edb90cc21292184 1.29MB / 1.29MB 0.3s done
+#6 sha256:c8cc3e95286cdfcdfe1215ca0626fb6d9043077962c7d4e5bcbab8b96231f919 12.11MB / 12.11MB 0.3s done
+#6 extracting sha256:8c7716127147648c1751940b9709b6325f2256290d3201662eca2701cadb2cdf 0.1s
+#6 sha256:9a7c3b4d36fcfabc97648dc4dac85621c13b28259240b776ecca901127578796 249B / 249B 0.4s done
+#6 extracting sha256:8c7716127147648c1751940b9709b6325f2256290d3201662eca2701cadb2cdf 0.8s done
+#6 extracting sha256:3c43e65991bd080f60cac1c513796828316f1f90951eaad19edb90cc21292184 0.1s
+#6 extracting sha256:3c43e65991bd080f60cac1c513796828316f1f90951eaad19edb90cc21292184 0.1s done
+#6 extracting sha256:c8cc3e95286cdfcdfe1215ca0626fb6d9043077962c7d4e5bcbab8b96231f919
+#6 extracting sha256:c8cc3e95286cdfcdfe1215ca0626fb6d9043077962c7d4e5bcbab8b96231f919 0.5s done
+#6 extracting sha256:9a7c3b4d36fcfabc97648dc4dac85621c13b28259240b776ecca901127578796
+#6 extracting sha256:9a7c3b4d36fcfabc97648dc4dac85621c13b28259240b776ecca901127578796 done
+#6 DONE 4.9s
+
+#7 [builder 2/6] WORKDIR /build
+#7 DONE 0.0s
+
+#8 [runtime 2/5] WORKDIR /app
+#8 DONE 0.0s
+
+#9 [builder 3/6] RUN python -m venv /opt/venv
+#9 DONE 3.3s
+
+#10 [builder 4/6] COPY pyproject.toml README.md LICENSE ./
+#10 DONE 0.0s
+
+#11 [builder 5/6] COPY cutline ./cutline
+#11 DONE 0.0s
+
+#12 [builder 6/6] RUN pip install --upgrade pip setuptools wheel && pip install .
+#12 0.868 Requirement already satisfied: pip in /opt/venv/lib/python3.12/site-packages (25.0.1)
+#12 0.921 Collecting pip
+#12 0.964   Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+#12 1.047 Collecting setuptools
+#12 1.050   Downloading setuptools-84.0.0-py3-none-any.whl.metadata (6.6 kB)
+#12 1.088 Collecting wheel
+#12 1.092   Downloading wheel-0.48.0-py3-none-any.whl.metadata (2.3 kB)
+#12 1.105 Collecting packaging>=24.0 (from wheel)
+#12 1.108   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+#12 1.113 Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+#12 1.129    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 171.1 MB/s eta 0:00:00
+#12 1.133 Downloading setuptools-84.0.0-py3-none-any.whl (818 kB)
+#12 1.137    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 818.2/818.2 kB 396.5 MB/s eta 0:00:00
+#12 1.140 Downloading wheel-0.48.0-py3-none-any.whl (33 kB)
+#12 1.143 Downloading packaging-26.3-py3-none-any.whl (129 kB)
+#12 1.167 Installing collected packages: setuptools, pip, packaging, wheel
+#12 1.573   Attempting uninstall: pip
+#12 1.575     Found existing installation: pip 25.0.1
+#12 1.603     Uninstalling pip-25.0.1:
+#12 1.648       Successfully uninstalled pip-25.0.1
+#12 2.608 Successfully installed packaging-26.3 pip-26.2.1 setuptools-84.0.0 wheel-0.48.0
+#12 3.380 Processing ./.
+#12 3.382   Installing build dependencies: started
+#12 4.412   Installing build dependencies: finished with status 'done'
+#12 4.413   Getting requirements to build wheel: started
+#12 5.180   Getting requirements to build wheel: finished with status 'done'
+#12 5.181   Preparing metadata (pyproject.toml): started
+#12 6.007   Preparing metadata (pyproject.toml): finished with status 'done'
+#12 6.084 Collecting fastapi==0.141.1 (from cutline-cinema==1.0.0)
+#12 6.119   Downloading fastapi-0.141.1-py3-none-any.whl.metadata (27 kB)
+#12 6.138 Collecting uvicorn==0.52.4 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+#12 6.142   Downloading uvicorn-0.52.4-py3-none-any.whl.metadata (6.6 kB)
+#12 6.220 Collecting pydantic==2.13.5 (from cutline-cinema==1.0.0)
+#12 6.224   Downloading pydantic-2.13.5-py3-none-any.whl.metadata (110 kB)
+#12 6.243 Collecting google-adk==2.8.0 (from cutline-cinema==1.0.0)
+#12 6.249   Downloading google_adk-2.8.0-py3-none-any.whl.metadata (25 kB)
+#12 6.307 Collecting google-genai==2.22.0 (from cutline-cinema==1.0.0)
+#12 6.311   Downloading google_genai-2.22.0-py3-none-any.whl.metadata (56 kB)
+#12 6.327 Collecting google-cloud-firestore==2.29.0 (from cutline-cinema==1.0.0)
+#12 6.339   Downloading google_cloud_firestore-2.29.0-py3-none-any.whl.metadata (9.5 kB)
+#12 6.348 Collecting parallel-web==1.3.3 (from cutline-cinema==1.0.0)
+#12 6.352   Downloading parallel_web-1.3.3-py3-none-any.whl.metadata (14 kB)
+#12 6.369 Collecting starlette>=0.46.0 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+#12 6.373   Downloading starlette-1.6.0-py3-none-any.whl.metadata (6.4 kB)
+#12 6.385 Collecting typing-extensions>=4.8.0 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+#12 6.389   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+#12 6.395 Collecting typing-inspection>=0.4.2 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+#12 6.398   Downloading typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)
+#12 6.404 Collecting annotated-doc>=0.0.2 (from fastapi==0.141.1->cutline-cinema==1.0.0)
+#12 6.407   Downloading annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)
+#12 6.794 Collecting aiohttp!=3.14.2 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.798   Downloading aiohttp-3.14.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (8.3 kB)
+#12 6.806 Collecting aiosqlite>=0.21 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.809   Downloading aiosqlite-0.22.1-py3-none-any.whl.metadata (4.3 kB)
+#12 6.820 Collecting authlib<2,>=1.6.6 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.824   Downloading authlib-1.8.0-py2.py3-none-any.whl.metadata (10 kB)
+#12 6.834 Collecting click<9,>=8.1.8 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.837   Downloading click-8.5.0-py3-none-any.whl.metadata (2.6 kB)
+#12 6.857 Collecting google-auth>=2.47 (from google-auth[pyopenssl]>=2.47->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.861   Downloading google_auth-2.57.1-py3-none-any.whl.metadata (6.0 kB)
+#12 6.877 Collecting graphviz<1,>=0.20.2 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.880   Downloading graphviz-0.21-py3-none-any.whl.metadata (12 kB)
+#12 6.892 Collecting httpx<1,>=0.27 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.896   Downloading httpx-0.28.1-py3-none-any.whl.metadata (7.1 kB)
+#12 6.936 Collecting jsonschema<5,>=4.23 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.939   Downloading jsonschema-4.26.0-py3-none-any.whl.metadata (7.6 kB)
+#12 6.952 Collecting opentelemetry-api<=1.42.1,>=1.39 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.955   Downloading opentelemetry_api-1.42.1-py3-none-any.whl.metadata (1.4 kB)
+#12 6.969 Collecting opentelemetry-sdk<=1.42.1,>=1.39 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.973   Downloading opentelemetry_sdk-1.42.1-py3-none-any.whl.metadata (1.7 kB)
+#12 6.975 Requirement already satisfied: packaging>=21 in /opt/venv/lib/python3.12/site-packages (from google-adk==2.8.0->cutline-cinema==1.0.0) (26.3)
+#12 6.985 Collecting python-dotenv<2,>=1 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 6.988   Downloading python_dotenv-1.2.3-py3-none-any.whl.metadata (29 kB)
+#12 6.998 Collecting python-multipart<1,>=0.0.9 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.001   Downloading python_multipart-0.0.32-py3-none-any.whl.metadata (2.1 kB)
+#12 7.027 Collecting pyyaml<7,>=6.0.2 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.030   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+#12 7.044 Collecting requests<3,>=2.32.4 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.048   Downloading requests-2.34.2-py3-none-any.whl.metadata (4.8 kB)
+#12 7.060 Collecting tenacity<10,>=9 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.063   Downloading tenacity-9.1.4-py3-none-any.whl.metadata (1.2 kB)
+#12 7.074 Collecting tzlocal<6,>=5.3 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.077   Downloading tzlocal-5.4.4-py3-none-any.whl.metadata (7.7 kB)
+#12 7.109 Collecting watchdog<7,>=6 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.113   Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl.metadata (44 kB)
+#12 7.200 Collecting websockets<16,>=15.0.1 (from google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 7.203   Downloading websockets-15.0.1-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+#12 7.217 Collecting anyio<5.0.0,>=4.8.0 (from google-genai==2.22.0->cutline-cinema==1.0.0)
+#12 7.220   Downloading anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)
+#12 7.234 Collecting distro<2,>=1.7.0 (from google-genai==2.22.0->cutline-cinema==1.0.0)
+#12 7.237   Downloading distro-1.9.0-py3-none-any.whl.metadata (6.8 kB)
+#12 7.244 Collecting sniffio (from google-genai==2.22.0->cutline-cinema==1.0.0)
+#12 7.247   Downloading sniffio-1.3.1-py3-none-any.whl.metadata (3.9 kB)
+#12 7.254 Collecting annotated-types>=0.6.0 (from pydantic==2.13.5->cutline-cinema==1.0.0)
+#12 7.257   Downloading annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)
+#12 7.795 Collecting pydantic-core==2.46.5 (from pydantic==2.13.5->cutline-cinema==1.0.0)
+#12 7.799   Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)
+#12 7.810 Collecting h11>=0.8 (from uvicorn==0.52.4->uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+#12 7.813   Downloading h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)
+#12 7.832 Collecting google-api-core<3.0.0,>=2.25.0 (from google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 7.836   Downloading google_api_core-2.36.0-py3-none-any.whl.metadata (3.2 kB)
+#12 7.849 Collecting google-cloud-core<3.0.0,>=2.0.0 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 7.853   Downloading google_cloud_core-2.7.0-py3-none-any.whl.metadata (2.8 kB)
+#12 8.282 Collecting grpcio<2.0.0,>=1.59.0 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 8.286   Downloading grpcio-1.83.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (3.7 kB)
+#12 8.297 Collecting proto-plus<2.0.0,>=1.26.1 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 8.301   Downloading proto_plus-1.28.4-py3-none-any.whl.metadata (2.2 kB)
+#12 8.409 Collecting protobuf<8.0.0,>=6.33.5 (from google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 8.413   Downloading protobuf-7.36.1-cp310-abi3-manylinux2014_x86_64.whl.metadata (595 bytes)
+#12 8.440 Collecting httptools>=0.8.0 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+#12 8.444   Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (3.5 kB)
+#12 8.471 Collecting uvloop>=0.15.1 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+#12 8.474   Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (4.9 kB)
+#12 8.531 Collecting watchfiles>=0.20 (from uvicorn[standard]==0.52.4->cutline-cinema==1.0.0)
+#12 8.535   Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.9 kB)
+#12 8.545 Collecting idna>=2.8 (from anyio<5.0.0,>=4.8.0->google-genai==2.22.0->cutline-cinema==1.0.0)
+#12 8.548   Downloading idna-3.19-py3-none-any.whl.metadata (9.2 kB)
+#12 8.687 Collecting cryptography>=45.0.1 (from authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.690   Downloading cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl.metadata (4.3 kB)
+#12 8.702 Collecting joserfc>=1.6.1 (from authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.706   Downloading joserfc-1.7.5-py3-none-any.whl.metadata (3.1 kB)
+#12 8.718 Collecting googleapis-common-protos<2.0.0,>=1.69.2 (from google-api-core<3.0.0,>=2.25.0->google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 8.722   Downloading googleapis_common_protos-1.75.3-py3-none-any.whl.metadata (8.5 kB)
+#12 8.726 INFO: pip is looking at multiple versions of google-api-core to determine which version is compatible with other requirements. This could take a while.
+#12 8.726 Collecting google-api-core<3.0.0,>=2.25.0 (from google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 8.730   Downloading google_api_core-2.34.0-py3-none-any.whl.metadata (2.9 kB)
+#12 8.733 INFO: pip is looking at multiple versions of google-api-core[grpc] to determine which version is compatible with other requirements. This could take a while.
+#12 8.753 Collecting grpcio-status<2.0.0,>=1.59.0 (from google-api-core[grpc]<3.0.0,>=2.25.0->google-cloud-firestore==2.29.0->cutline-cinema==1.0.0)
+#12 8.756   Downloading grpcio_status-1.83.1-py3-none-any.whl.metadata (1.2 kB)
+#12 8.769 Collecting pyasn1-modules>=0.2.1 (from google-auth>=2.47->google-auth[pyopenssl]>=2.47->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.772   Downloading pyasn1_modules-0.4.2-py3-none-any.whl.metadata (3.5 kB)
+#12 8.799 Collecting certifi (from httpx<1,>=0.27->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.802   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)
+#12 8.812 Collecting httpcore==1.* (from httpx<1,>=0.27->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.815   Downloading httpcore-1.0.9-py3-none-any.whl.metadata (21 kB)
+#12 8.827 Collecting attrs>=22.2.0 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.830   Downloading attrs-26.1.0-py3-none-any.whl.metadata (8.8 kB)
+#12 8.837 Collecting jsonschema-specifications>=2023.03.6 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.841   Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl.metadata (2.9 kB)
+#12 8.902 Collecting referencing>=0.28.4 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 8.905   Downloading referencing-0.37.0-py3-none-any.whl.metadata (2.8 kB)
+#12 9.103 Collecting rpds-py>=0.25.0 (from jsonschema<5,>=4.23->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.107   Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.1 kB)
+#12 9.120 Collecting opentelemetry-semantic-conventions==0.63b1 (from opentelemetry-sdk<=1.42.1,>=1.39->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.123   Downloading opentelemetry_semantic_conventions-0.63b1-py3-none-any.whl.metadata (2.4 kB)
+#12 9.218 Collecting charset_normalizer<4,>=2 (from requests<3,>=2.32.4->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.221   Downloading charset_normalizer-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (45 kB)
+#12 9.238 Collecting urllib3<3,>=1.26 (from requests<3,>=2.32.4->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.242   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)
+#12 9.261 Collecting aiohappyeyeballs>=2.5.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.264   Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl.metadata (5.9 kB)
+#12 9.270 Collecting aiosignal>=1.4.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.273   Downloading aiosignal-1.4.0-py3-none-any.whl.metadata (3.7 kB)
+#12 9.323 Collecting frozenlist>=1.1.1 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.331   Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl.metadata (20 kB)
+#12 9.503 Collecting multidict<7.0,>=4.5 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.507   Downloading multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (5.3 kB)
+#12 9.599 Collecting propcache>=0.2.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.603   Downloading propcache-0.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (16 kB)
+#12 9.798 Collecting yarl<2.0,>=1.17.0 (from aiohttp!=3.14.2->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.802   Downloading yarl-1.24.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (103 kB)
+#12 9.899 Collecting cffi>=2.0.0 (from cryptography>=45.0.1->authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.903   Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)
+#12 9.910 Collecting pycparser (from cffi>=2.0.0->cryptography>=45.0.1->authlib<2,>=1.6.6->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.914   Downloading pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)
+#12 9.935 Collecting pyasn1<0.7.0,>=0.6.1 (from pyasn1-modules>=0.2.1->google-auth>=2.47->google-auth[pyopenssl]>=2.47->google-adk==2.8.0->cutline-cinema==1.0.0)
+#12 9.939   Downloading pyasn1-0.6.4-py3-none-any.whl.metadata (8.4 kB)
+#12 9.953 Downloading fastapi-0.141.1-py3-none-any.whl (131 kB)
+#12 9.959 Downloading google_adk-2.8.0-py3-none-any.whl (4.5 MB)
+#12 10.00    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 116.5 MB/s  0:00:00
+#12 10.00 Downloading google_genai-2.22.0-py3-none-any.whl (1.1 MB)
+#12 10.01    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 150.9 MB/s  0:00:00
+#12 10.02 Downloading pydantic-2.13.5-py3-none-any.whl (472 kB)
+#12 10.02 Downloading uvicorn-0.52.4-py3-none-any.whl (79 kB)
+#12 10.02 Downloading google_cloud_firestore-2.29.0-py3-none-any.whl (432 kB)
+#12 10.03 Downloading parallel_web-1.3.3-py3-none-any.whl (176 kB)
+#12 10.03 Downloading pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+#12 10.04    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 266.3 MB/s  0:00:00
+#12 10.05 Downloading anyio-4.15.1-py3-none-any.whl (132 kB)
+#12 10.05 Downloading authlib-1.8.0-py2.py3-none-any.whl (260 kB)
+#12 10.05 Downloading click-8.5.0-py3-none-any.whl (125 kB)
+#12 10.06 Downloading distro-1.9.0-py3-none-any.whl (20 kB)
+#12 10.06 Downloading google_api_core-2.34.0-py3-none-any.whl (180 kB)
+#12 10.06 Downloading google_auth-2.57.1-py3-none-any.whl (259 kB)
+#12 10.07 Downloading google_cloud_core-2.7.0-py3-none-any.whl (31 kB)
+#12 10.07 Downloading googleapis_common_protos-1.75.3-py3-none-any.whl (306 kB)
+#12 10.07 Downloading graphviz-0.21-py3-none-any.whl (47 kB)
+#12 10.08 Downloading grpcio-1.83.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (7.0 MB)
+#12 10.10    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 7.0/7.0 MB 411.6 MB/s  0:00:00
+#12 10.10 Downloading grpcio_status-1.83.1-py3-none-any.whl (14 kB)
+#12 10.10 Downloading httpx-0.28.1-py3-none-any.whl (73 kB)
+#12 10.11 Downloading httpcore-1.0.9-py3-none-any.whl (78 kB)
+#12 10.11 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)
+#12 10.11 Downloading opentelemetry_api-1.42.1-py3-none-any.whl (61 kB)
+#12 10.11 Downloading opentelemetry_sdk-1.42.1-py3-none-any.whl (170 kB)
+#12 10.12 Downloading opentelemetry_semantic_conventions-0.63b1-py3-none-any.whl (203 kB)
+#12 10.12 Downloading proto_plus-1.28.4-py3-none-any.whl (50 kB)
+#12 10.12 Downloading protobuf-7.36.1-cp310-abi3-manylinux2014_x86_64.whl (343 kB)
+#12 10.13 Downloading python_dotenv-1.2.3-py3-none-any.whl (22 kB)
+#12 10.13 Downloading python_multipart-0.0.32-py3-none-any.whl (30 kB)
+#12 10.14 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+#12 10.14    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 1.0 GB/s  0:00:00
+#12 10.14 Downloading requests-2.34.2-py3-none-any.whl (73 kB)
+#12 10.15 Downloading charset_normalizer-3.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (248 kB)
+#12 10.15 Downloading idna-3.19-py3-none-any.whl (68 kB)
+#12 10.15 Downloading starlette-1.6.0-py3-none-any.whl (75 kB)
+#12 10.16 Downloading tenacity-9.1.4-py3-none-any.whl (28 kB)
+#12 10.16 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+#12 10.16 Downloading tzlocal-5.4.4-py3-none-any.whl (18 kB)
+#12 10.16 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)
+#12 10.17 Downloading watchdog-6.0.0-py3-none-manylinux2014_x86_64.whl (79 kB)
+#12 10.17 Downloading websockets-15.0.1-cp312-cp312-manylinux_2_5_x86_64.manylinux1_x86_64.manylinux_2_17_x86_64.manylinux2014_x86_64.whl (182 kB)
+#12 10.17 Downloading aiohttp-3.14.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (1.8 MB)
+#12 10.18    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 517.6 MB/s  0:00:00
+#12 10.18 Downloading multidict-6.7.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (256 kB)
+#12 10.19 Downloading yarl-1.24.5-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (109 kB)
+#12 10.19 Downloading aiohappyeyeballs-2.7.1-py3-none-any.whl (15 kB)
+#12 10.19 Downloading aiosignal-1.4.0-py3-none-any.whl (7.5 kB)
+#12 10.20 Downloading aiosqlite-0.22.1-py3-none-any.whl (17 kB)
+#12 10.20 Downloading annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+#12 10.20 Downloading annotated_types-0.8.0-py3-none-any.whl (13 kB)
+#12 10.20 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)
+#12 10.21 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)
+#12 10.21 Downloading cryptography-50.0.1-cp311-abi3-manylinux_2_34_x86_64.whl (4.7 MB)
+#12 10.23    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.7/4.7 MB 369.3 MB/s  0:00:00
+#12 10.23 Downloading cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)
+#12 10.23 Downloading frozenlist-1.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (242 kB)
+#12 10.24 Downloading h11-0.16.0-py3-none-any.whl (37 kB)
+#12 10.24 Downloading httptools-0.8.0-cp312-cp312-manylinux1_x86_64.manylinux_2_28_x86_64.manylinux_2_5_x86_64.whl (523 kB)
+#12 10.24 Downloading joserfc-1.7.5-py3-none-any.whl (71 kB)
+#12 10.25 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)
+#12 10.25 Downloading propcache-0.5.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (61 kB)
+#12 10.25 Downloading pyasn1_modules-0.4.2-py3-none-any.whl (181 kB)
+#12 10.26 Downloading pyasn1-0.6.4-py3-none-any.whl (84 kB)
+#12 10.26 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)
+#12 10.26 Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (366 kB)
+#12 10.27 Downloading typing_inspection-0.4.4-py3-none-any.whl (14 kB)
+#12 10.27 Downloading uvloop-0.22.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (4.4 MB)
+#12 10.28    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.4/4.4 MB 540.9 MB/s  0:00:00
+#12 10.28 Downloading watchfiles-1.2.0-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (456 kB)
+#12 10.29 Downloading pycparser-3.0-py3-none-any.whl (48 kB)
+#12 10.29 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)
+#12 10.48 Building wheels for collected packages: cutline-cinema
+#12 10.48   Building wheel for cutline-cinema (pyproject.toml): started
+#12 11.27   Building wheel for cutline-cinema (pyproject.toml): finished with status 'done'
+#12 11.27   Created wheel for cutline-cinema: filename=cutline_cinema-1.0.0-py3-none-any.whl size=26515 sha256=1f4890396958e36a1edb61fad57d8f492e4d1b24add37d218bf2a4b17942afa5
+#12 11.27   Stored in directory: /tmp/pip-ephem-wheel-cache-b9wo28tm/wheels/7f/5c/67/61a4ca28ccbc7df61f55a044560f100aa81c66ef20585de495
+#12 11.27 Successfully built cutline-cinema
+#12 11.41 Installing collected packages: websockets, watchdog, uvloop, urllib3, tzlocal, typing-extensions, tenacity, sniffio, rpds-py, pyyaml, python-multipart, python-dotenv, pycparser, pyasn1, protobuf, propcache, multidict, idna, httptools, h11, graphviz, frozenlist, distro, click, charset_normalizer, certifi, attrs, annotated-types, annotated-doc, aiosqlite, aiohappyeyeballs, yarl, uvicorn, typing-inspection, requests, referencing, pydantic-core, pyasn1-modules, proto-plus, opentelemetry-api, httpcore, grpcio, googleapis-common-protos, cffi, anyio, aiosignal, watchfiles, starlette, pydantic, opentelemetry-semantic-conventions, jsonschema-specifications, httpx, grpcio-status, cryptography, aiohttp, parallel-web, opentelemetry-sdk, jsonschema, joserfc, google-auth, fastapi, google-api-core, authlib, google-genai, google-cloud-core, google-cloud-firestore, google-adk, cutline-cinema
+#12 17.27 
+#12 17.28 Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 aiosqlite-0.22.1 annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 attrs-26.1.0 authlib-1.8.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 click-8.5.0 cryptography-50.0.1 cutline-cinema-1.0.0 distro-1.9.0 fastapi-0.141.1 frozenlist-1.8.0 google-adk-2.8.0 google-api-core-2.34.0 google-auth-2.57.1 google-cloud-core-2.7.0 google-cloud-firestore-2.29.0 google-genai-2.22.0 googleapis-common-protos-1.75.3 graphviz-0.21 grpcio-1.83.1 grpcio-status-1.83.1 h11-0.16.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 idna-3.19 joserfc-1.7.5 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 multidict-6.7.1 opentelemetry-api-1.42.1 opentelemetry-sdk-1.42.1 opentelemetry-semantic-conventions-0.63b1 parallel-web-1.3.3 propcache-0.5.2 proto-plus-1.28.4 protobuf-7.36.1 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.0 pydantic-2.13.5 pydantic-core-2.46.5 python-dotenv-1.2.3 python-multipart-0.0.32 pyyaml-6.0.3 referencing-0.37.0 requests-2.34.2 rpds-py-2026.6.3 sniffio-1.3.1 starlette-1.6.0 tenacity-9.1.4 typing-extensions-4.16.0 typing-inspection-0.4.4 tzlocal-5.4.4 urllib3-2.7.0 uvicorn-0.52.4 uvloop-0.22.1 watchdog-6.0.0 watchfiles-1.2.0 websockets-15.0.1 yarl-1.24.5
+#12 DONE 18.8s
+
+#13 [runtime 3/5] COPY --from=builder /opt/venv /opt/venv
+#13 DONE 2.1s
+
+#14 [runtime 4/5] COPY --chown=65532:65532 cutline ./cutline
+#14 DONE 0.0s
+
+#15 [runtime 5/5] COPY --chown=65532:65532 static ./static
+#15 DONE 0.0s
+
+#16 exporting to image
+#16 exporting layers
+#16 exporting layers 1.5s done
+#16 writing image sha256:61f235b0f86101ef462f6f5463ae9d3c49762ab1aac2ba209dd709d1af11d844 done
+#16 naming to docker.io/library/cutline:diagnostic done
+#16 DONE 1.5s
+status=0
