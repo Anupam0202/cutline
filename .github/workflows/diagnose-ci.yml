@@ -1,0 +1,60 @@
+name: one-time-ci-diagnostics
+
+on:
+  push:
+    branches: [fix/release-readiness]
+
+permissions:
+  contents: write
+
+jobs:
+  diagnose:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Capture validation output
+        shell: bash
+        run: |
+          set +e
+          {
+            echo '== pip upgrade =='
+            python -m pip install --upgrade pip
+            echo "status=$?"
+            echo '== install =='
+            pip install '.[test]'
+            echo "status=$?"
+            echo '== ruff check =='
+            ruff check .
+            echo "status=$?"
+            echo '== ruff format =='
+            ruff format --check .
+            echo "status=$?"
+            echo '== unit tests =='
+            python -m unittest discover -s tests -v
+            echo "status=$?"
+            echo '== browser syntax =='
+            node --check static/app.js
+            echo "status=$?"
+            echo '== repository policy =='
+            python scripts/validate_repo.py
+            echo "status=$?"
+            echo '== container build =='
+            docker build --tag cutline:diagnostic .
+            echo "status=$?"
+          } > ci-diagnostics.txt 2>&1
+          git config user.name 'Anupam Roy'
+          git config user.email 'anupam020202@gmail.com'
+          git add ci-diagnostics.txt
+          git commit -m 'Capture CI diagnostics'
+          git push origin "HEAD:${{ github.ref_name }}"
