@@ -12,6 +12,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.trustedhost import TrustedHostMiddleware
 from fastapi.responses import FileResponse, JSONResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
+from starlette.types import ASGIApp, Receive, Scope, Send
 
 from cutline.config import ConfigurationError, Settings
 from cutline.domain import (
@@ -34,6 +35,21 @@ from cutline.store import FirestoreProjectStore, MemoryProjectStore, ProjectStor
 
 LOGGER = logging.getLogger("cutline.api")
 STATIC_ROOT = Path(__file__).resolve().parent.parent / "static"
+HEALTH_PATHS = frozenset({"/health/live", "/health/ready"})
+
+
+class HealthProbeTrustedHostMiddleware:
+    """Apply host validation except to host-independent health probes."""
+
+    def __init__(self, app: ASGIApp, allowed_hosts: list[str]) -> None:
+        self._app = app
+        self._trusted_host = TrustedHostMiddleware(app, allowed_hosts=allowed_hosts)
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if scope["type"] == "http" and scope.get("path") in HEALTH_PATHS:
+            await self._app(scope, receive, send)
+            return
+        await self._trusted_host(scope, receive, send)
 
 
 def _error(code: str, message: str, status: int, request_id: str | None = None) -> JSONResponse:
@@ -72,7 +88,7 @@ def create_app(
         redoc_url=None,
         openapi_url="/api/openapi.json" if settings.mode == "fixture" else None,
     )
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=list(settings.allowed_hosts))
+    app.add_middleware(HealthProbeTrustedHostMiddleware, allowed_hosts=list(settings.allowed_hosts))
     app.state.settings = settings
     app.state.store = store
     app.state.research_service = research_service

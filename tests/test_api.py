@@ -46,6 +46,12 @@ class ApiTests(unittest.TestCase):
         self.assertIn("frame-ancestors 'none'", response.headers["content-security-policy"])
         self.assertEqual(self.client.get("/health/ready").status_code, 200)
 
+    def test_health_probes_bypass_host_check_only(self) -> None:
+        internal_probe_headers = {"host": "169.254.1.2"}
+        self.assertEqual(self.client.get("/health/live", headers=internal_probe_headers).status_code, 200)
+        self.assertEqual(self.client.get("/health/ready", headers=internal_probe_headers).status_code, 200)
+        self.assertEqual(self.client.get("/", headers=internal_probe_headers).status_code, 400)
+
     def test_csrf_and_owner_session(self) -> None:
         response = self.client.patch(
             f"/api/projects/{self.project['id']}/cues/c1",

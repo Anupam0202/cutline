@@ -1,10 +1,13 @@
 from __future__ import annotations
 
+import logging
 import threading
 from copy import deepcopy
 from typing import Protocol
 
 from cutline.domain import DomainError, Mutation, Project, commit_mutation
+
+LOGGER = logging.getLogger("cutline.store")
 
 
 class ProjectStore(Protocol):
@@ -141,5 +144,6 @@ class FirestoreProjectStore:
         try:
             next(self._collection.limit(1).stream(), None)
             return True
-        except Exception:
+        except Exception as exc:
+            LOGGER.warning("firestore_readiness_failed", extra={"error_type": type(exc).__name__})
             return False
