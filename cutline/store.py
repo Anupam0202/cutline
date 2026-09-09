@@ -17,6 +17,8 @@ class ProjectStore(Protocol):
 
     def count(self, owner_hash: str) -> int: ...
 
+    def list(self, owner_hash: str) -> list[Project]: ...
+
     def mutate(
         self,
         owner_hash: str,
@@ -50,6 +52,15 @@ class MemoryProjectStore:
     def count(self, owner_hash: str) -> int:
         with self._lock:
             return sum(1 for project in self._projects.values() if project["owner_hash"] == owner_hash)
+
+    def list(self, owner_hash: str) -> list[Project]:
+        with self._lock:
+            projects = [
+                deepcopy(project)
+                for project in self._projects.values()
+                if project["owner_hash"] == owner_hash
+            ]
+        return sorted(projects, key=lambda project: project["updated_at"], reverse=True)
 
     def mutate(
         self,
@@ -111,6 +122,18 @@ class FirestoreProjectStore:
 
         query = self._collection.where(filter=FieldFilter("owner_hash", "==", owner_hash))
         return sum(1 for _ in query.stream())
+
+    def list(self, owner_hash: str) -> list[Project]:
+        from google.cloud.firestore_v1.base_query import FieldFilter
+
+        query = self._collection.where(filter=FieldFilter("owner_hash", "==", owner_hash))
+        projects = [snapshot.to_dict() for snapshot in query.stream()]
+        owned = [
+            deepcopy(project)
+            for project in projects
+            if project is not None and project.get("owner_hash") == owner_hash
+        ]
+        return sorted(owned, key=lambda project: project["updated_at"], reverse=True)
 
     def mutate(
         self,
