@@ -18,7 +18,7 @@ def settings() -> Settings:
         google_cloud_location="global",
         model_id="gemini-3.5-flash",
         parallel_api_key="",
-        session_secret="test-secret-which-is-longer-than-32-characters",
+        session_secret="test-secret-which-is-longer-than-32-characters",  # noqa: S106
         cookie_secure=False,
         allowed_hosts=("testserver",),
         project_ttl_hours=72,

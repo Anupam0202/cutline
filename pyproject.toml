@@ -9,7 +9,7 @@ description = "Version-bound documentary fact review with Gemini and Parallel Se
 readme = "README.md"
 requires-python = ">=3.12,<3.15"
 license = { file = "LICENSE" }
-authors = [{ name = "Nielson" }]
+authors = [{ name = "Anupam Roy", email = "anupam020202@gmail.com" }]
 dependencies = [
   "fastapi==0.141.1",
   "uvicorn[standard]==0.52.4",

@@ -7,9 +7,10 @@ import io
 import json
 import secrets
 import unicodedata
+from collections.abc import Callable
 from copy import deepcopy
 from datetime import UTC, datetime, timedelta
-from typing import Any, Callable
+from typing import Any
 
 Project = dict[str, Any]
 Mutation = Callable[[Project], None]
@@ -222,7 +223,12 @@ def new_project(owner_hash: str, mode: str, ttl_hours: int) -> Project:
         "recipes": {
             "main": {"id": "main", "name": "Main cut", "cue_ids": ["c1", "c2", "q1"], "signoff_hash": ""},
             "teaser": {"id": "teaser", "name": "Teaser", "cue_ids": ["c1", "q1"], "signoff_hash": ""},
-            "control": {"id": "control", "name": "Independent control", "cue_ids": ["c2"], "signoff_hash": ""},
+            "control": {
+                "id": "control",
+                "name": "Independent control",
+                "cue_ids": ["c2"],
+                "signoff_hash": "",
+            },
         },
         "events": [],
     }
@@ -414,25 +420,23 @@ def export_handoff(project: Project, recipe_id: str = "main") -> dict[str, Any]:
         cue["changed"] = cue["original_text"] != cue["text"]
         cue["requires_rerecording"] = cue["changed"] and cue["kind"] == "NARRATION_DRAFT"
         cues.append(cue)
-    claim_ids = {
-        claim["id"]
-        for claim in project["claims"].values()
-        if claim["cue_id"] in recipe["cue_ids"]
-    }
-    claims = [
-        deepcopy(claim)
-        for claim in project["claims"].values()
-        if claim["id"] in claim_ids
-    ]
+    claim_ids = {claim["id"] for claim in project["claims"].values() if claim["cue_id"] in recipe["cue_ids"]}
+    claims = [deepcopy(claim) for claim in project["claims"].values() if claim["id"] in claim_ids]
     source_ids = {source_id for claim in claims for source_id in claim.get("source_ids", [])}
+    review_scope = (
+        "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order."
+    )
+    disclaimer = (
+        "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit."
+    )
     return {
         "artifact": "CUTLINE editorial handoff",
         "project_id": project["id"],
         "recipe": recipe["name"],
         "mode": project["mode"],
         "revision": project["revision"],
-        "review_scope": "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order.",
-        "disclaimer": "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit.",
+        "review_scope": review_scope,
+        "disclaimer": disclaimer,
         "cues": cues,
         "claims": claims,
         "sources": [deepcopy(project["sources"][source_id]) for source_id in sorted(source_ids)],

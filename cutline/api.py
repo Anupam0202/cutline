@@ -1,5 +1,3 @@
-from __future__ import annotations
-
 import asyncio
 import json
 import logging
@@ -159,7 +157,9 @@ def create_app(
         try:
             return sessions.context(token)
         except ValueError as exc:
-            raise DomainError("SESSION_REQUIRED", "Refresh the application to start a secure session.", 401) from exc
+            raise DomainError(
+                "SESSION_REQUIRED", "Refresh the application to start a secure session.", 401
+            ) from exc
 
     def mutating_session(
         request: Request,

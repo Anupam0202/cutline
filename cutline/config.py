@@ -53,7 +53,7 @@ class Settings:
         return self.mode == "live"
 
     @classmethod
-    def from_env(cls) -> "Settings":
+    def from_env(cls) -> Settings:
         mode = os.getenv("APP_MODE", "fixture").strip().lower()
         if mode not in {"fixture", "live"}:
             raise ConfigurationError("APP_MODE must be fixture or live")

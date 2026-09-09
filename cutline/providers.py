@@ -35,7 +35,12 @@ def _public_http_url(value: str) -> bool:
         parsed = urlparse(value)
     except ValueError:
         return False
-    return parsed.scheme in {"https", "http"} and bool(parsed.hostname) and not parsed.username and not parsed.password
+    return (
+        parsed.scheme in {"https", "http"}
+        and bool(parsed.hostname)
+        and not parsed.username
+        and not parsed.password
+    )
 
 
 def _object_dict(value: Any) -> dict[str, Any]:
@@ -175,7 +180,9 @@ class LiveResearchService:
             raise ProviderError("PARTNER_TIMEOUT", "Parallel Search timed out. Try again.", True) from exc
         except Exception as exc:
             LOGGER.warning("parallel_search_failed", extra={"error_type": type(exc).__name__})
-            raise ProviderError("PARTNER_UNAVAILABLE", "Parallel Search is temporarily unavailable.", True) from exc
+            raise ProviderError(
+                "PARTNER_UNAVAILABLE", "Parallel Search is temporarily unavailable.", True
+            ) from exc
 
         parallel_ms = round((time.perf_counter() - started) * 1_000)
         sources = _search_sources(response)
@@ -320,7 +327,10 @@ class LiveResearchService:
             status = "INSUFFICIENT"
         proposal = assessment.get("proposal") if status == "CONTRADICTED" else None
         if proposal is not None:
-            if not isinstance(proposal, dict) or not 1 <= len(_clean_text(proposal.get("new_text"), 500)) <= 500:
+            if (
+                not isinstance(proposal, dict)
+                or not 1 <= len(_clean_text(proposal.get("new_text"), 500)) <= 500
+            ):
                 proposal = None
             else:
                 proposal = {
@@ -332,7 +342,9 @@ class LiveResearchService:
             "assessment": status,
             "span": _clean_text(assessment.get("span") or cue_text.rstrip("."), 500),
             "proposition": _clean_text(assessment.get("proposition") or cue_text, 500),
-            "rationale": _clean_text(assessment.get("rationale") or "Direct support was not established.", 1_500),
+            "rationale": _clean_text(
+                assessment.get("rationale") or "Direct support was not established.", 1_500
+            ),
             "proposal": proposal,
             "sources": selected if selected else sources[:5],
         }

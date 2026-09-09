@@ -62,7 +62,7 @@ class DomainTests(unittest.IsolatedAsyncioTestCase):
 
     def test_csv_formula_neutralization(self) -> None:
         handoff = export_handoff(self.project)
-        handoff["cues"][0]["after_text"] = "=HYPERLINK(\"https://example.com\")"
+        handoff["cues"][0]["after_text"] = '=HYPERLINK("https://example.com")'
         rendered = export_csv(handoff)
         self.assertIn("'=HYPERLINK", rendered)
 
