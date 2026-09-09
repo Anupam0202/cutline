@@ -1,10 +1,37 @@
 from __future__ import annotations
 
 import os
+from functools import lru_cache
 from typing import Any
 
 from google.adk import Agent
+from google.adk.integrations.secret_manager.secret_client import SecretManagerClient
+from google.auth import default as google_auth_default
 from parallel import AsyncParallel
+
+
+@lru_cache(maxsize=1)
+def _parallel_api_key() -> str:
+    direct_key = os.getenv("PARALLEL_API_KEY", "").strip()
+    if direct_key:
+        return direct_key
+
+    project_id = os.getenv("GOOGLE_CLOUD_PROJECT", "").strip()
+    if not project_id:
+        _, discovered_project = google_auth_default()
+        project_id = discovered_project or ""
+    if not project_id:
+        raise RuntimeError("Google Cloud project could not be resolved for Parallel credentials")
+
+    credential_id = os.getenv("PARALLEL_API_KEY_SECRET", "parallel-api-key").strip()
+    if not credential_id or not all(character.isalnum() or character in "-_" for character in credential_id):
+        raise RuntimeError("PARALLEL_API_KEY_SECRET must be a Secret Manager secret ID")
+
+    resource_name = f"projects/{project_id}/secrets/{credential_id}/versions/latest"
+    value = SecretManagerClient().get_secret(resource_name).strip()
+    if not value:
+        raise RuntimeError("Parallel credential is empty")
+    return value
 
 
 async def search_documentary_evidence(search_query: str, objective: str) -> dict[str, Any]:
@@ -16,7 +43,7 @@ async def search_documentary_evidence(search_query: str, objective: str) -> dict
     if not 10 <= len(goal) <= 2_000:
         return {"error": "objective must be 10–2,000 characters"}
     async with AsyncParallel(
-        api_key=os.environ["PARALLEL_API_KEY"],
+        api_key=_parallel_api_key(),
         timeout=float(os.getenv("PROVIDER_TIMEOUT_SECONDS", "30")),
         max_retries=1,
     ) as client:

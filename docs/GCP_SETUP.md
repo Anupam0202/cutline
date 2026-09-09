@@ -16,15 +16,20 @@ export SERVICE_ACCOUNT_NAME='cutline-runtime'
 
 Use a dedicated billing-enabled project. Vertex AI calls use the Cloud Run service identity through Application Default Credentials; no Google API key is required.
 
-## 2. Install and authenticate the CLI
+## 2. Select the project and verify authentication
+
+Google Cloud Shell is the recommended deployment environment. It already includes an authenticated Google Cloud CLI, so do not run interactive login commands there.
 
 ```bash
 gcloud version
-gcloud auth login
-gcloud auth application-default login
+gcloud auth list --filter=status:ACTIVE --format='value(account)'
 gcloud config set project "$GOOGLE_CLOUD_PROJECT"
 gcloud config set run/region "$GOOGLE_CLOUD_LOCATION"
+gcloud projects describe "$GOOGLE_CLOUD_PROJECT" --format='value(lifecycleState)'
+gcloud billing projects describe "$GOOGLE_CLOUD_PROJECT" --format='value(billingEnabled)'
 ```
+
+For a local workstation only, authenticate with `gcloud auth login` and `gcloud auth application-default login` before running local credentialed tests.
 
 Create a new project only if needed:
 
@@ -197,9 +202,10 @@ export GOOGLE_CLOUD_PROJECT
 export GOOGLE_CLOUD_LOCATION='us-central1'
 export GOOGLE_GENAI_USE_VERTEXAI=TRUE
 export MODEL_ID='gemini-3.5-flash'
-export PARALLEL_API_KEY   # use only in an authorized local deployment shell
 ./scripts/deploy_agent_engine.sh
 ```
+
+Do not export the Parallel credential for the remote deployment. The ADK tool retrieves `parallel-api-key` from Secret Manager at runtime using the Agent Engine identity; the deployment script grants that identity access only to this secret.
 
 The command prints an Agent Engine resource name similar to:
 
