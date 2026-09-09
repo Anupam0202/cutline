@@ -429,8 +429,13 @@ def export_handoff(project: Project, recipe_id: str = "main") -> dict[str, Any]:
         "recipe": recipe["name"],
         "mode": project["mode"],
         "revision": project["revision"],
-        "review_scope": "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order.",
-        "disclaimer": "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit.",
+        "review_scope": (
+            "Exact cue wording, revisions, timecodes, source captures, assessments, "
+            "approvals, and recipe order."
+        ),
+        "disclaimer": (
+            "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit."
+        ),
         "cues": cues,
         "claims": claims,
         "sources": [deepcopy(project["sources"][source_id]) for source_id in sorted(source_ids)],
