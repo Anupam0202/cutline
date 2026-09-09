@@ -6,17 +6,31 @@ GOOGLE_CLOUD_LOCATION="${GOOGLE_CLOUD_LOCATION:-us-central1}"
 export GOOGLE_GENAI_USE_VERTEXAI=TRUE GOOGLE_CLOUD_PROJECT GOOGLE_CLOUD_LOCATION
 
 command -v adk >/dev/null || { echo "Run: pip install ." >&2; exit 1; }
-gcloud secrets describe parallel-api-key >/dev/null
-if [[ -z "$(gcloud secrets versions list parallel-api-key --filter='state=ENABLED' --format='value(name)' --limit=1)" ]]; then
+python -c 'import vertexai; from vertexai.agent_engines.templates.adk import AdkApp' >/dev/null || {
+  echo "Agent Engine SDK missing. Run: pip install ." >&2
+  exit 1
+}
+gcloud secrets describe parallel-api-key --project="${GOOGLE_CLOUD_PROJECT}" >/dev/null
+if [[ -z "$(gcloud secrets versions list parallel-api-key --project="${GOOGLE_CLOUD_PROJECT}" --filter='state=ENABLED' --format='value(name)' --limit=1)" ]]; then
   echo "parallel-api-key has no enabled Secret Manager version." >&2
   exit 1
 fi
 
+DEPLOY_LOG="$(mktemp)"
+trap 'rm -f "${DEPLOY_LOG}"' EXIT
+
+set +e
 adk deploy agent_engine \
   --project="${GOOGLE_CLOUD_PROJECT}" \
   --region="${GOOGLE_CLOUD_LOCATION}" \
   --display_name="CUTLINE Claim Research" \
-  cutline/agents/claim_research
+  cutline/agents/claim_research 2>&1 | tee "${DEPLOY_LOG}"
+DEPLOY_STATUS="${PIPESTATUS[0]}"
+set -e
+if [[ "${DEPLOY_STATUS}" -ne 0 ]] || grep -q '^Deploy failed:' "${DEPLOY_LOG}"; then
+  echo "Agent Engine deployment failed before resource creation." >&2
+  exit 1
+fi
 
 PROJECT_NUMBER="$(gcloud projects describe "${GOOGLE_CLOUD_PROJECT}" --format='value(projectNumber)')"
 AGENT_ENGINE_IDENTITY="service-${PROJECT_NUMBER}@gcp-sa-aiplatform-re.iam.gserviceaccount.com"
@@ -32,6 +46,7 @@ if ! gcloud iam service-accounts describe "${AGENT_ENGINE_IDENTITY}" >/dev/null 
 fi
 
 gcloud secrets add-iam-policy-binding parallel-api-key \
+  --project="${GOOGLE_CLOUD_PROJECT}" \
   --member="serviceAccount:${AGENT_ENGINE_IDENTITY}" \
   --role=roles/secretmanager.secretAccessor \
   --quiet >/dev/null
