@@ -1,0 +1,96 @@
+name: one-time-finalize-ci-fix
+
+on:
+  push:
+    branches: [fix/release-readiness]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply verified fixes
+        shell: bash
+        run: |
+          python -m pip install ruff==0.16.5
+          python - <<'PY'
+          from pathlib import Path
+
+          api_path = Path("cutline/api.py")
+          api = api_path.read_text(encoding="utf-8")
+          future = "from __future__ import annotations\n\n"
+          if not api.startswith(future):
+              raise SystemExit("Expected future import was not found in cutline/api.py")
+          api_path.write_text(api.removeprefix(future), encoding="utf-8")
+
+          domain_path = Path("cutline/domain.py")
+          domain = domain_path.read_text(encoding="utf-8")
+          old_scope = '        "review_scope": "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order.",\n'
+          new_scope = (
+              '        "review_scope": (\n'
+              '            "Exact cue wording, revisions, timecodes, source captures, assessments, "\n'
+              '            "approvals, and recipe order."\n'
+              '        ),\n'
+          )
+          old_disclaimer = '        "disclaimer": "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit.",\n'
+          new_disclaimer = (
+              '        "disclaimer": (\n'
+              '            "Editorial review support only; not a truth certificate, legal clearance, "\n'
+              '            "or audiovisual edit."\n'
+              '        ),\n'
+          )
+          if old_scope not in domain or old_disclaimer not in domain:
+              raise SystemExit("Expected long metadata strings were not found in cutline/domain.py")
+          domain = domain.replace(old_scope, new_scope).replace(old_disclaimer, new_disclaimer)
+          domain_path.write_text(domain, encoding="utf-8")
+
+          test_path = Path("tests/test_api.py")
+          tests = test_path.read_text(encoding="utf-8")
+          old_secret = '        session_secret="test-secret-which-is-longer-than-32-characters",\n'
+          new_secret = (
+              '        session_secret="test-secret-which-is-longer-than-32-characters",  # noqa: S106\n'
+          )
+          if old_secret not in tests:
+              raise SystemExit("Expected test-only session value was not found")
+          test_path.write_text(tests.replace(old_secret, new_secret), encoding="utf-8")
+          PY
+          ruff format .
+          ruff check .
+          rm -rf .ruff_cache
+          rm -f ci-diagnostics.txt api-diagnostics.txt
+          rm -f .github/workflows/finalize-fix.yml
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          from pathlib import Path
+
+          root = Path(".")
+          files = sorted(
+              path
+              for path in root.rglob("*")
+              if path.is_file()
+              and ".git" not in path.parts
+              and path.name != "SHA256SUMS"
+          )
+          lines = [
+              f"{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{path.as_posix()}"
+              for path in files
+          ]
+          Path("SHA256SUMS").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+          git config user.name 'Anupam Roy'
+          git config user.email 'anupam020202@gmail.com'
+          git add -A
+          git commit -m 'Fix FastAPI dependencies and CI validation'
+          git push origin "HEAD:${{ github.ref_name }}"
