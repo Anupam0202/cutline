@@ -1,10 +1,20 @@
 from __future__ import annotations
 
 import unittest
+from typing import Any
 
 from cutline.cockpit import new_custom_project, project_summary
 from cutline.domain import DomainError, snapshot
 from cutline.store import MemoryProjectStore
+
+
+def cue(
+    text: str,
+    start_ms: int = 0,
+    end_ms: int = 4_500,
+    kind: str = "NARRATION_DRAFT",
+) -> dict[str, Any]:
+    return {"text": text, "start_ms": start_ms, "end_ms": end_ms, "kind": kind}
 
 
 class CockpitDomainTests(unittest.TestCase):
@@ -15,18 +25,8 @@ class CockpitDomainTests(unittest.TestCase):
             72,
             "Archive rough cut",
             [
-                {
-                    "text": "The archive opened in 1975.",
-                    "start_ms": 0,
-                    "end_ms": 4_500,
-                    "kind": "NARRATION_DRAFT",
-                },
-                {
-                    "text": "An attributed quotation.",
-                    "start_ms": 5_000,
-                    "end_ms": 9_500,
-                    "kind": "QUOTATION",
-                },
+                cue("The archive opened in 1975."),
+                cue("An attributed quotation.", 5_000, 9_500, "QUOTATION"),
             ],
         )
         state = snapshot(project)
@@ -43,23 +43,15 @@ class CockpitDomainTests(unittest.TestCase):
                 "fixture",
                 72,
                 "Invalid cut",
-                [
-                    {"text": "One", "start_ms": 0, "end_ms": 5_000, "kind": "NARRATION_DRAFT"},
-                    {"text": "Two", "start_ms": 4_000, "end_ms": 8_000, "kind": "NARRATION_DRAFT"},
-                ],
+                [cue("One", 0, 5_000), cue("Two", 4_000, 8_000)],
             )
 
     def test_store_lists_only_owned_projects(self) -> None:
         store = MemoryProjectStore()
-        first = store.create(new_custom_project("owner", "fixture", 72, "One", [
-            {"text": "Claim one", "start_ms": 0, "end_ms": 4_500, "kind": "NARRATION_DRAFT"}
-        ]))
-        second = store.create(new_custom_project("owner", "fixture", 72, "Two", [
-            {"text": "Claim two", "start_ms": 0, "end_ms": 4_500, "kind": "NARRATION_DRAFT"}
-        ]))
-        store.create(new_custom_project("other", "fixture", 72, "Other", [
-            {"text": "Other claim", "start_ms": 0, "end_ms": 4_500, "kind": "NARRATION_DRAFT"}
-        ]))
+        first = store.create(new_custom_project("owner", "fixture", 72, "One", [cue("Claim one")]))
+        second = store.create(new_custom_project("owner", "fixture", 72, "Two", [cue("Claim two")]))
+        store.create(new_custom_project("other", "fixture", 72, "Other", [cue("Other claim")]))
+
         self.assertEqual({item["id"] for item in store.list("owner")}, {first["id"], second["id"]})
         self.assertEqual(store.list("unknown"), [])
 

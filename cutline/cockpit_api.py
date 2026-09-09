@@ -1,7 +1,5 @@
-from __future__ import annotations
-
 import asyncio
-from typing import Any
+from typing import Annotated, Any
 from urllib.parse import urlparse
 
 from fastapi import Depends, FastAPI, Header, Request
@@ -29,7 +27,7 @@ def attach_cockpit_routes(app: FastAPI) -> FastAPI:
 
     def mutating_session(
         request: Request,
-        x_csrf_token: str | None = Header(default=None, alias="X-CSRF-Token"),
+        x_csrf_token: Annotated[str | None, Header(alias="X-CSRF-Token")] = None,
     ) -> SessionContext:
         context = session_from_request(request)
         if not sessions.csrf_valid(context, x_csrf_token):
@@ -42,18 +40,16 @@ def attach_cockpit_routes(app: FastAPI) -> FastAPI:
                 raise DomainError("ORIGIN_REJECTED", "Cross-origin changes are not allowed.", 403)
         return context
 
+    ReadSession = Annotated[SessionContext, Depends(session_from_request)]
+    WriteSession = Annotated[SessionContext, Depends(mutating_session)]
+
     @app.get("/api/project-summaries")
-    async def list_project_summaries(
-        session: SessionContext = Depends(session_from_request),
-    ) -> dict[str, Any]:
+    async def list_project_summaries(session: ReadSession) -> dict[str, Any]:
         projects = await asyncio.to_thread(store.list, session.owner_hash)
         return {"projects": [project_summary(project) for project in projects]}
 
     @app.post("/api/custom-projects", status_code=201)
-    async def create_custom_project(
-        body: CreateProjectRequest,
-        session: SessionContext = Depends(mutating_session),
-    ) -> dict[str, Any]:
+    async def create_custom_project(body: CreateProjectRequest, session: WriteSession) -> dict[str, Any]:
         if body.title is None or body.cues is None:
             raise DomainError("INVALID_PROJECT", "Custom projects require a title and cues.", 422)
         count = await asyncio.to_thread(store.count, session.owner_hash)
