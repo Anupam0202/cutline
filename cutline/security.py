@@ -21,7 +21,7 @@ class SessionManager:
         self._secret = secret.encode("utf-8")
 
     def _sign(self, purpose: str, value: str) -> str:
-        payload = f"{purpose}:{value}".encode("utf-8")
+        payload = f"{purpose}:{value}".encode()
         signature = hmac.new(self._secret, payload, hashlib.sha256).digest()
         return base64.urlsafe_b64encode(signature).decode("ascii").rstrip("=")
 

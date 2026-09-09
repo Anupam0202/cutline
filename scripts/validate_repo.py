@@ -6,9 +6,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 REQUIRED = {
-    "LICENSE", "README.md", "Dockerfile", "pyproject.toml", "cutline/api.py",
-    "cutline/providers.py", "cutline/agents/claim_research/agent.py",
-    "static/index.html", "tests/test_domain.py", "docs/GCP_SETUP.md",
+    "LICENSE",
+    "README.md",
+    "Dockerfile",
+    "pyproject.toml",
+    "cutline/api.py",
+    "cutline/providers.py",
+    "cutline/agents/claim_research/agent.py",
+    "static/index.html",
+    "tests/test_domain.py",
+    "docs/GCP_SETUP.md",
 }
 TEXT_SUFFIXES = {".py", ".js", ".css", ".html", ".md", ".toml", ".yaml", ".yml", ".sh", ".example"}
 SECRET_PATTERNS = [
