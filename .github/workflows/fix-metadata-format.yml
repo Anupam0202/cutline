@@ -1,0 +1,88 @@
+name: one-time-metadata-format-fix
+
+on:
+  push:
+    branches: [fix/release-readiness]
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Apply final formatting fix
+        shell: bash
+        run: |
+          python -m pip install ruff==0.16.5
+          python - <<'PY'
+          from pathlib import Path
+
+          path = Path("cutline/domain.py")
+          text = path.read_text(encoding="utf-8")
+          marker = '    return {\n        "artifact": "CUTLINE editorial handoff",\n'
+          prefix = (
+              '    review_scope = (\n'
+              '        "Exact cue wording, revisions, timecodes, source captures, assessments, "\n'
+              '        "approvals, and recipe order."\n'
+              '    )\n'
+              '    disclaimer = (\n'
+              '        "Editorial review support only; not a truth certificate, legal clearance, "\n'
+              '        "or audiovisual edit."\n'
+              '    )\n'
+          )
+          old_values = (
+              '        "review_scope": (\n'
+              '            "Exact cue wording, revisions, timecodes, source captures, assessments, "\n'
+              '            "approvals, and recipe order."\n'
+              '        ),\n'
+              '        "disclaimer": (\n'
+              '            "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit."\n'
+              '        ),\n'
+          )
+          new_values = (
+              '        "review_scope": review_scope,\n'
+              '        "disclaimer": disclaimer,\n'
+          )
+          if marker not in text or old_values not in text:
+              raise SystemExit("Expected export metadata block was not found")
+          text = text.replace(marker, prefix + marker, 1).replace(old_values, new_values, 1)
+          path.write_text(text, encoding="utf-8")
+          PY
+          ruff format .
+          ruff check .
+          rm -rf .ruff_cache
+          rm -f .github/workflows/fix-metadata-format.yml
+          python - <<'PY'
+          from __future__ import annotations
+
+          import hashlib
+          from pathlib import Path
+
+          root = Path(".")
+          files = sorted(
+              path
+              for path in root.rglob("*")
+              if path.is_file()
+              and ".git" not in path.parts
+              and path.name != "SHA256SUMS"
+          )
+          lines = [
+              f"{hashlib.sha256(path.read_bytes()).hexdigest()}  ./{path.as_posix()}"
+              for path in files
+          ]
+          Path("SHA256SUMS").write_text("\n".join(lines) + "\n", encoding="utf-8")
+          PY
+          git config user.name 'Anupam Roy'
+          git config user.email 'anupam020202@gmail.com'
+          git add -A
+          git commit -m 'Keep export metadata within lint limits'
+          git push origin "HEAD:${{ github.ref_name }}"
