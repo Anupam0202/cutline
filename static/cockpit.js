@@ -223,6 +223,11 @@
 
   function enhance() {
     if (!currentProject) return;
+    const workspace = document.querySelector("#workspace");
+    const activeStep = document.querySelector(".steps button.active")?.dataset.step || "script";
+    const marker = `${currentProject.id}:${currentProject.revision}:${activeStep}:${selectedCueId()}`;
+    if (workspace?.dataset.cockpitMarker === marker) return;
+    if (workspace) workspace.dataset.cockpitMarker = marker;
     const summary = workflow();
     const title = document.querySelector("#projectTitle");
     if (title) title.textContent = currentProject.title;
