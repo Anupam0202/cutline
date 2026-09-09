@@ -423,19 +423,20 @@ def export_handoff(project: Project, recipe_id: str = "main") -> dict[str, Any]:
     claim_ids = {claim["id"] for claim in project["claims"].values() if claim["cue_id"] in recipe["cue_ids"]}
     claims = [deepcopy(claim) for claim in project["claims"].values() if claim["id"] in claim_ids]
     source_ids = {source_id for claim in claims for source_id in claim.get("source_ids", [])}
+    review_scope = (
+        "Exact cue wording, revisions, timecodes, source captures, assessments, approvals, and recipe order."
+    )
+    disclaimer = (
+        "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit."
+    )
     return {
         "artifact": "CUTLINE editorial handoff",
         "project_id": project["id"],
         "recipe": recipe["name"],
         "mode": project["mode"],
         "revision": project["revision"],
-        "review_scope": (
-            "Exact cue wording, revisions, timecodes, source captures, assessments, "
-            "approvals, and recipe order."
-        ),
-        "disclaimer": (
-            "Editorial review support only; not a truth certificate, legal clearance, or audiovisual edit."
-        ),
+        "review_scope": review_scope,
+        "disclaimer": disclaimer,
         "cues": cues,
         "claims": claims,
         "sources": [deepcopy(project["sources"][source_id]) for source_id in sorted(source_ids)],
