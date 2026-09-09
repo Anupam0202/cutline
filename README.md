@@ -4,7 +4,7 @@
 
 CUTLINE prevents an old fact-check approval from silently surviving a later script edit. It binds every claim review to the exact cue text, evidence capture, content revision, and edit recipe that a person approved.
 
-**Hackathon track:** Parallel  
+**track:** Parallel  
 **Google runtime:** Gemini on Vertex AI, with a deployable Google ADK agent  
 **Partner runtime:** Parallel Search API  
 **Deployment target:** Google Cloud Run with Firestore
