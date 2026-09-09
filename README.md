@@ -128,7 +128,7 @@ export GOOGLE_CLOUD_PROJECT='your-project-id'
 export GOOGLE_CLOUD_LOCATION='us-central1'
 ./scripts/bootstrap_gcp.sh
 ./scripts/deploy_cloud_run.sh
-./scripts/deploy_agent_engine.sh
+CREATE_AGENT_ENGINE=true ./scripts/deploy_agent_engine.sh
 ```
 
 The Cloud Run script builds from source, attaches a least-privilege runtime service account, injects secrets, configures resource limits and health probes, prints the HTTPS URL, and runs non-destructive smoke checks.

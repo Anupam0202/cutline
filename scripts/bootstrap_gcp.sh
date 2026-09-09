@@ -27,6 +27,7 @@ gcloud services enable \
   artifactregistry.googleapis.com \
   billingbudgets.googleapis.com \
   cloudbuild.googleapis.com \
+  cloudresourcemanager.googleapis.com \
   compute.googleapis.com \
   firestore.googleapis.com \
   iam.googleapis.com \

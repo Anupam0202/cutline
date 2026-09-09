@@ -48,6 +48,7 @@ gcloud services enable \
   artifactregistry.googleapis.com \
   billingbudgets.googleapis.com \
   cloudbuild.googleapis.com \
+  cloudresourcemanager.googleapis.com \
   firestore.googleapis.com \
   iam.googleapis.com \
   logging.googleapis.com \
@@ -201,9 +202,15 @@ source .venv/bin/activate
 export GOOGLE_CLOUD_PROJECT
 export GOOGLE_CLOUD_LOCATION='us-central1'
 export GOOGLE_GENAI_USE_VERTEXAI=TRUE
-export MODEL_ID='gemini-3.5-flash'
+export MODEL_ID='gemini-2.5-flash'
+export CREATE_AGENT_ENGINE=true
 ./scripts/deploy_agent_engine.sh
+unset CREATE_AGENT_ENGINE
 ```
+
+For an update, omit `CREATE_AGENT_ENGINE`, set `AGENT_ENGINE_ID` to the existing numeric resource ID, and rerun the script. The script refuses implicit creation, so a delayed post-deployment IAM check cannot accidentally lead to a duplicate resource.
+
+`gemini-2.5-flash` is used because the Agent Engine is deployed in `us-central1`; select a model available in the same endpoint location.
 
 Do not export the Parallel credential for the remote deployment. The ADK tool retrieves `parallel-api-key` from Secret Manager at runtime using the Agent Engine identity; the deployment script grants that identity access only to this secret.
 

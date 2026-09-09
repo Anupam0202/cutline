@@ -60,7 +60,7 @@ async def search_documentary_evidence(search_query: str, objective: str) -> dict
 
 root_agent = Agent(
     name="cutline_claim_research",
-    model=os.getenv("MODEL_ID", "gemini-3.5-flash"),
+    model=os.getenv("MODEL_ID", "gemini-2.5-flash"),
     description="Researches documentary narration against traceable public sources.",
     instruction=(
         "Research exactly one documentary narration claim. You must call "
