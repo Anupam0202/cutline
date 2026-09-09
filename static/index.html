@@ -3,9 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="CUTLINE keeps documentary fact review bound to exact script wording and edit recipes.">
+  <meta name="description" content="CUTLINE is a revision-aware documentary fact review workspace powered by Gemini, Google Cloud, and Parallel Search.">
   <meta name="theme-color" content="#f7f6f3">
-  <title>CUTLINE — Documentary fact change control</title>
+  <meta name="color-scheme" content="light dark">
+  <title>CUTLINE — Evidence-aware documentary review</title>
   <link rel="stylesheet" href="/assets/styles.css">
   <script src="/assets/app.js" defer></script>
 </head>
@@ -14,66 +15,180 @@
   <header class="site-header">
     <a class="brand" href="/" aria-label="CUTLINE home">
       <span class="brand-mark" aria-hidden="true"><span></span></span>
-      <span><strong>CUTLINE</strong><small>Documentary fact change control</small></span>
+      <span><strong>CUTLINE</strong><small>Documentary evidence control</small></span>
     </a>
-    <div class="runtime" id="runtime" aria-live="polite">
-      <span class="runtime-dot" aria-hidden="true"></span><span>Connecting…</span>
+    <div class="header-actions">
+      <button class="text-button" id="openArchitecture" type="button">Architecture</button>
+      <div class="runtime" id="runtime" aria-live="polite">
+        <span class="runtime-dot" aria-hidden="true"></span><span>Connecting…</span>
+      </div>
     </div>
   </header>
+
   <main>
     <section class="hero" id="intro">
       <div class="hero-copy">
-        <p class="kicker">EDITORIAL INTEGRITY, VERSIONED</p>
-        <h1>A fact check approves <em>this cut</em>—not every future edit.</h1>
-        <p class="lede">CUTLINE links every reviewed claim to exact narration, evidence, and edit recipes. Change one date and only the affected handoffs become stale.</p>
+        <p class="kicker accent">PARALLEL TRACK · GOOGLE CLOUD AGENTIC CINEMA</p>
+        <h1>A fact check belongs to <em>this cut</em>—not every future edit.</h1>
+        <p class="lede">CUTLINE is an evidence-aware review cockpit for documentary teams. It binds narration, live web research, human approval, and production handoffs to the exact revision that was reviewed.</p>
         <div class="hero-actions">
-          <button class="button primary" id="start" type="button">Open the review workspace</button>
-          <span class="retention" id="retention">Private browser session</span>
+          <button class="button primary" id="start" type="button">Run the Apollo 11 proof</button>
+          <button class="button" id="openImport" type="button">Review your own script</button>
+          <button class="button resume-button" id="resumeProject" type="button" hidden>Resume latest review</button>
         </div>
+        <div class="trust-chips" aria-label="Product safeguards">
+          <span>Revision-bound</span><span>Public evidence</span><span>Human-gated</span><span>Audit-ready</span>
+        </div>
+        <p class="retention" id="retention">Establishing a private browser session…</p>
       </div>
-      <aside class="proof-card" aria-label="Demo workflow">
-        <div class="proof-label"><span>45-second proof</span><span>01—04</span></div>
+
+      <aside class="proof-card" aria-label="Live agent workflow">
+        <div class="proof-label"><span>LIVE AGENT PATH</span><span>01—04</span></div>
         <ol>
-          <li><span>01</span><div><strong>Review the script</strong><small>Claims are tied to wording and revision.</small></div></li>
-          <li><span>02</span><div><strong>Change one date</strong><small>Main and teaser dependencies go stale.</small></div></li>
-          <li><span>03</span><div><strong>Research the delta</strong><small>Traceable evidence, then human approval.</small></div></li>
-          <li><span>04</span><div><strong>Export the handoff</strong><small>Timecodes, changes, sources, and limits.</small></div></li>
+          <li><span>01</span><div><strong>Detect the changed claim</strong><small>Fingerprint exact wording, timecode, and revision.</small></div></li>
+          <li><span>02</span><div><strong>Search with Parallel</strong><small>Capture public source excerpts and URLs at runtime.</small></div></li>
+          <li><span>03</span><div><strong>Assess with Gemini</strong><small>Structured reasoning over the bounded evidence packet.</small></div></li>
+          <li><span>04</span><div><strong>Require human signoff</strong><small>Release only a current, traceable editor handoff.</small></div></li>
         </ol>
       </aside>
     </section>
-    <section class="workspace" id="workspace" hidden tabindex="-1" aria-label="Review workspace">
+
+    <section class="platform-strip" aria-label="Runtime architecture">
+      <div><span class="platform-index">01</span><strong>Google ADK</strong><small>Agent workflow</small></div>
+      <div><span class="platform-index">02</span><strong>Parallel Search</strong><small>Live public evidence</small></div>
+      <div><span class="platform-index">03</span><strong>Gemini on Vertex AI</strong><small>Structured assessment</small></div>
+      <div><span class="platform-index">04</span><strong>Cloud Run + Firestore</strong><small>Secure state and hosting</small></div>
+    </section>
+
+    <section class="workspace" id="workspace" hidden tabindex="-1" aria-label="Review workspace" aria-busy="false">
       <div class="workspace-header">
-        <div><p class="kicker">ACTIVE PROJECT</p><h2>Apollo 11 paper edit</h2></div>
-        <div class="project-meta"><span id="revision">Revision —</span><button class="icon-button" id="deleteProject" type="button">Delete</button></div>
+        <div>
+          <p class="kicker">ACTIVE REVIEW</p>
+          <h2 id="projectTitle">Documentary paper edit</h2>
+          <div class="integrity-line"><span id="revision">Revision —</span><span aria-hidden="true">·</span><span id="fingerprint">Policy cutline-review-v1</span></div>
+        </div>
+        <div class="project-actions">
+          <button class="icon-button neutral" id="newReview" type="button">New review</button>
+          <button class="icon-button" id="deleteProject" type="button">Delete</button>
+        </div>
       </div>
+
+      <section class="scoreboard" aria-label="Review status summary">
+        <div class="score-card">
+          <span class="score-label">Review progress</span>
+          <strong id="metricProgress">0%</strong>
+          <div class="mini-progress" aria-hidden="true"><span id="metricProgressBar"></span></div>
+        </div>
+        <div class="score-card">
+          <span class="score-label">Current claims</span>
+          <strong id="metricClaims">0 / 0</strong>
+          <small>Exact wording approved</small>
+        </div>
+        <div class="score-card">
+          <span class="score-label">Blocked handoffs</span>
+          <strong id="metricRecipes">0</strong>
+          <small>Dependency-aware</small>
+        </div>
+        <div class="score-card">
+          <span class="score-label">Evidence captures</span>
+          <strong id="metricSources">0</strong>
+          <small>URLs + retrieval time</small>
+        </div>
+      </section>
+
       <nav class="steps" aria-label="Review stages">
-        <button class="active" type="button" data-step="script"><span>01</span>Script</button>
-        <button type="button" data-step="impact"><span>02</span>Impact</button>
-        <button type="button" data-step="evidence"><span>03</span>Evidence</button>
-        <button type="button" data-step="handoff"><span>04</span>Handoff</button>
+        <button class="active" type="button" data-step="script" aria-current="step"><span>01</span><b>Script</b><small>Exact revision</small></button>
+        <button type="button" data-step="impact" aria-current="false"><span>02</span><b>Impact</b><small>Dependency graph</small></button>
+        <button type="button" data-step="evidence" aria-current="false"><span>03</span><b>Evidence</b><small>Agent trace</small></button>
+        <button type="button" data-step="handoff" aria-current="false"><span>04</span><b>Handoff</b><small>Human-gated export</small></button>
       </nav>
+
       <div class="status-banner" id="statusBanner" role="status" aria-live="polite"></div>
+
       <div class="workspace-grid">
         <section class="panel script-panel" aria-labelledby="script-heading">
-          <div class="panel-heading"><div><p class="kicker">TIMECODED NARRATION</p><h3 id="script-heading">Paper edit</h3></div><span class="scope-chip">Exact revision</span></div>
+          <div class="panel-heading">
+            <div><p class="kicker">TIMECODED NARRATION</p><h3 id="script-heading">Paper edit</h3></div>
+            <span class="scope-chip">Exact revision</span>
+          </div>
           <div id="cues" class="cue-list"></div>
         </section>
         <aside class="panel detail-panel" aria-label="Review details"><div id="detail"></div></aside>
       </div>
+
       <section class="integration-strip" aria-labelledby="integration-heading">
-        <div><p class="kicker">RUNTIME RECEIPT</p><h3 id="integration-heading">Provider activity</h3></div>
+        <div class="integration-intro">
+          <p class="kicker">RUNTIME RECEIPT</p>
+          <h3 id="integration-heading">Agent execution</h3>
+          <small>Provider activity for the selected claim</small>
+        </div>
         <div class="integration-cards" id="integrationCards"></div>
+      </section>
+
+      <section class="ledger" aria-labelledby="ledger-heading">
+        <div class="ledger-header">
+          <div><p class="kicker">REVIEW LEDGER</p><h3 id="ledger-heading">Versioned audit trail</h3></div>
+          <button class="button compact" id="copyAudit" type="button">Copy audit summary</button>
+        </div>
+        <div class="ledger-list" id="eventLedger"></div>
       </section>
     </section>
   </main>
-  <dialog id="confirmDialog" aria-labelledby="confirm-title">
-    <form method="dialog" id="confirmForm">
-      <p class="kicker">EDITORIAL CHANGE</p><h2 id="confirm-title">Apply the supported repair?</h2>
-      <p>This changes the narration draft. Existing picture and audio stay untouched, so the line must be re-recorded.</p>
-      <div class="dialog-actions"><button class="button" value="cancel" type="submit">Cancel</button><button class="button primary" id="confirmApply" value="confirm" type="submit">Apply repair</button></div>
+
+  <dialog id="importDialog" aria-labelledby="import-title">
+    <form id="importForm">
+      <p class="kicker">NEW DOCUMENTARY REVIEW</p>
+      <h2 id="import-title">Bring your own narration</h2>
+      <p>Paste one narration cue per line. CUTLINE creates timecoded review units, then researches each cue independently.</p>
+      <label class="field-label" for="customTitle">Project title</label>
+      <input id="customTitle" name="title" type="text" maxlength="120" required placeholder="e.g. Climate archive rough cut">
+      <label class="field-label" for="customScript">Narration cues</label>
+      <textarea id="customScript" name="script" rows="7" maxlength="6000" required placeholder="The first narration claim.&#10;A second narration claim.&#10;A third narration claim."></textarea>
+      <div class="form-note"><span>Up to 12 cues</span><span>5 seconds assigned per line</span></div>
+      <div class="dialog-actions">
+        <button class="button" id="cancelImport" type="button">Cancel</button>
+        <button class="button primary" type="submit">Create review</button>
+      </div>
     </form>
   </dialog>
+
+  <dialog id="architectureDialog" aria-labelledby="architecture-title">
+    <form method="dialog">
+      <p class="kicker">BOUNDED AGENT ARCHITECTURE</p>
+      <h2 id="architecture-title">Automation proposes. People release.</h2>
+      <div class="architecture-flow" aria-label="CUTLINE data flow">
+        <div><span>01</span><strong>Cloud Run</strong><small>Session, CSRF, revision precondition</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>02</span><strong>Parallel</strong><small>Live public source excerpts</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>03</span><strong>Gemini</strong><small>Schema-bound evidence assessment</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>04</span><strong>Human gate</strong><small>Claim approval and recipe signoff</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>05</span><strong>Firestore</strong><small>Transactional audit state + TTL</small></div>
+      </div>
+      <p class="boundary-note">Google ADK packages the same claim-research capability for Vertex AI Agent Engine. Provider output cannot approve claims, alter quotations, sign off recipes, or release exports.</p>
+      <div class="dialog-actions"><button class="button primary" value="close" type="submit">Close architecture</button></div>
+    </form>
+  </dialog>
+
+  <dialog id="confirmDialog" aria-labelledby="confirm-title">
+    <form method="dialog" id="confirmForm">
+      <p class="kicker">EDITORIAL CHANGE</p>
+      <h2 id="confirm-title">Apply the supported repair?</h2>
+      <p>This changes the narration draft. Existing picture and audio stay untouched, so the line must be re-recorded and researched again.</p>
+      <div class="dialog-actions">
+        <button class="button" value="cancel" type="submit">Cancel</button>
+        <button class="button primary" id="confirmApply" value="confirm" type="submit">Apply repair</button>
+      </div>
+    </form>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
   <noscript><p class="noscript">CUTLINE requires JavaScript for its review workspace.</p></noscript>
-  <footer class="site-footer"><span>Human approval controls every reviewed export.</span><span>Editorial support—not legal clearance or a truth certificate.</span></footer>
+  <footer class="site-footer">
+    <span>Human approval controls every reviewed export.</span>
+    <span>Editorial support—not legal clearance or a universal truth certificate.</span>
+  </footer>
 </body>
 </html>
